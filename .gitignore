@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment files
+.env
+*/.env
+
+# Build outputs
+dist/
+*/dist/
+build/
+*/build/
+
+# MongoDB backup files
+backup/
+mongodb-tools/
+
+# Archive files
+*.zip
+*.gz
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+temp.txt

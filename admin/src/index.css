@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300..800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: Sora, system-ui, sans-serif;
+}
+
+:root{
+    --ink-900:#1f2937;
+    --ink-700:#374151;
+    --ink-500:#6b7280;
+    --rose-50:#eef6ff;
+    --rose-100:#dbeafe;
+    --sky-50:#eef7ff;
+    --sky-100:#dbeafe;
+    --mint-50:#ecfdf5;
+    --mint-100:#d1fae5;
+    --peach-50:#f0f7ff;
+    --peach-100:#dbeafe;
+    --border-soft:#e5e7eb;
+    --accent:#7aa6ff;
+    --accent-strong:#5b84f1;
+}
+
+.dark {
+    --ink-900: #ffffff;
+    --ink-700: #f3f4f6;
+    --ink-500: #d1d5db;
+    --rose-50: #000000;
+    --rose-100: #171717;
+    --sky-50: #000000;
+    --sky-100: #171717;
+    --mint-50: #052e16;
+    --mint-100: #064e3b;
+    --peach-50: #000000;
+    --peach-100: #171717;
+    --border-soft: #262626;
+    background-color: #000000;
+}
+
+body{
+    background: radial-gradient(1200px 600px at 10% -10%, var(--sky-50), transparent 60%),
+                radial-gradient(800px 400px at 90% 10%, var(--rose-50), transparent 60%),
+                linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    color: var(--ink-900);
+    min-height: 100vh;
+    overflow: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+    background: radial-gradient(1200px 600px at 10% -10%, #000000, transparent 60%),
+                radial-gradient(800px 400px at 90% 10%, #000000, transparent 60%),
+                linear-gradient(180deg, #000000 0%, #000000 100%);
+    color: #ffffff;
+}
+
+.dark .text-gray-700,
+.dark .text-gray-600,
+.dark .text-gray-900,
+.dark p, .dark span, .dark h1, .dark h2, .dark h3, .dark label {
+    color: #ffffff !important;
+}
+
+.dark .text-gray-400, .dark .text-gray-500 {
+    color: #a1a1aa !important;
+}
+
+.dark .bg-white {
+    background-color: #000000 !important;
+}
+
+.dark .border-gray-200, .dark .border {
+    border-color: #262626 !important;
+}
+
+select,input,textarea{
+    border: 1px solid #c2c2c2;
+    outline-color: #7aa6ff;
+    border-radius: 4px;
+}
+
+.active{
+    background-color: #eaf2ff;
+    border-color: #7aa6ff;
+}
+
+.admin-shell{
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.admin-topbar{
+    background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0.75));
+    border-bottom: 1px solid var(--border-soft);
+    backdrop-filter: blur(6px);
+}
+
+.dark .admin-topbar {
+    background: linear-gradient(90deg, rgba(0,0,0,0.98), rgba(0,0,0,0.9));
+}
+
+.admin-sidebar{
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
+    border-right: 1px solid var(--border-soft);
+    box-shadow: 0 10px 30px rgba(31, 41, 55, 0.06);
+}
+
+.dark .admin-sidebar {
+    background: linear-gradient(180deg, rgba(0,0,0,0.98), rgba(0,0,0,0.9));
+}
+
+.admin-card{
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(31, 41, 55, 0.08);
+}
+
+.dark .admin-card {
+    background: #0a0a0a;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.admin-section-title{
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink-900);
+}
+
+.admin-muted{
+    color: var(--ink-500);
+}
+
+.admin-cta{
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: #fff;
+    border-radius: 999px;
+    padding: 10px 22px;
+    transition: transform 150ms ease;
+}
+
+.admin-cta:hover{
+    transform: translateY(-1px);
+}
+
+.admin-cta-sm{
+    padding: 6px 14px;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.admin-input{
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    padding: 10px 12px;
+    background: #fff;
+}
+
+.admin-input:focus{
+    outline: 2px solid rgba(122, 166, 255, 0.35);
+    border-color: var(--accent);
+}
+
+.admin-chip{
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    padding: 6px 14px;
+    background: #fff;
+    transition: all 150ms ease;
+}
+
+.admin-chip-active{
+    background: var(--rose-100);
+    border-color: var(--accent);
+}
+
+.admin-panel{
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+    border: 1px solid var(--border-soft);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.dark .admin-panel {
+    background: #000000;
+}
+
+.dark select, .dark input, .dark textarea {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    border-color: #262626;
+}
+
+.dark .active {
+    background-color: #1a202c;
+    border-color: #5b84f1;
+}
