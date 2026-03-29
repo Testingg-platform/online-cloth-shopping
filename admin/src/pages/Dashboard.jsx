@@ -169,7 +169,7 @@ const OrderLineChart = ({ trend = [], height = 220 }) => {
 
           return (
             <g 
-              key={p.day}
+              key={index}
               onMouseEnter={() => setHoveredPoint(p)}
               onMouseLeave={() => setHoveredPoint(null)}
               className='cursor-pointer'

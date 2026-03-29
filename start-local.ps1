@@ -7,6 +7,7 @@ $ErrorActionPreference = "Stop"
 $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $backendDir = Join-Path $projectRoot "backend"
 $frontendDir = Join-Path $projectRoot "frontend"
+$adminDir = Join-Path $projectRoot "admin"
 $archivePath = Join-Path $projectRoot "onlinecloth.archive.gz"
 $mongoRestoreExe = Join-Path $projectRoot "tools\mongodb-database-tools-windows-x86_64-100.10.0\bin\mongorestore.exe"
 $mongoToolsZip = Join-Path $projectRoot "mongodb-database-tools.zip"
@@ -65,4 +66,16 @@ if ($frontendPortInUse) {
     )
 }
 
-Write-Host "Done. Backend: http://localhost:4000 | Frontend: http://127.0.0.1:5174"
+$adminPortInUse = Get-NetTCPConnection -LocalPort 5175 -State Listen -ErrorAction SilentlyContinue
+if ($adminPortInUse) {
+    Write-Host "Admin port 5175 is already in use, skipping admin start."
+} else {
+    Write-Host "Starting admin in a new window..."
+    Start-Process powershell -ArgumentList @(
+        "-NoExit",
+        "-Command",
+        "cd '$adminDir'; npm run dev -- --host 127.0.0.1 --port 5175"
+    )
+}
+
+Write-Host "Done. Backend: http://localhost:4000 | Frontend: http://127.0.0.1:5174 | Admin: http://127.0.0.1:5175"
