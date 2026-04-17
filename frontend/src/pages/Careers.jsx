@@ -83,7 +83,7 @@ const Careers = () => {
   }
 
   return (
-    <div className='space-y-12 py-12 md:py-16'>
+    <div className='space-y-12 py-12 md:py-16 glass p-6 sm:p-10 relative z-10 my-10'>
       <div className='text-center'>
         <Title text1='CAREERS' text2='AT OUTFIT' />
         <h1 className='text-3xl sm:text-4xl font-semibold text-gray-900'>Join the team that dresses the world for everyday life.</h1>
@@ -95,7 +95,7 @@ const Careers = () => {
 
       <div className='grid md:grid-cols-3 gap-6 lg:gap-8'>
         {jobOpenings.map((job) => (
-          <article key={job.title} className='border border-blue-50 rounded-2xl p-5 bg-white shadow-sm flex flex-col'>
+          <article key={job.title} className='border border-blue-50 rounded-2xl p-5 glass shadow-sm flex flex-col relative z-20'>
             <div className='flex items-center justify-between text-sm uppercase tracking-[0.2em] text-indigo-600 mb-2'>
               <span>{job.type}</span>
               <span>{job.location}</span>
@@ -120,7 +120,7 @@ const Careers = () => {
         ))}
       </div>
 
-      <div ref={formRef} id='career-form' className='max-w-2xl mx-auto bg-white border border-blue-50 rounded-3xl shadow-[0_20px_55px_rgba(15,23,42,0.08)] p-6 lg:p-10'>
+      <div ref={formRef} id='career-form' className='max-w-2xl mx-auto glass border border-blue-50 rounded-3xl p-6 lg:p-10 relative z-20'>
         <Title text1='SEND US' text2='YOUR CV' />
         <p className='text-gray-600 mb-6'>
           Share a quick note on why you love Outfit, upload your CV, and we will follow up with next steps.

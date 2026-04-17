@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import InteractiveBackground from './components/InteractiveBackground'
 import Home from './pages/Home'
 import Collection from './pages/Collection'
 import About from './pages/About'
@@ -21,7 +22,8 @@ import Careers from './pages/Careers'
 
 const App = () => {
   return (
-    <div className='site-shell px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+    <div className='site-shell px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] relative min-h-screen z-10'>
+      <InteractiveBackground />
       <ToastContainer />
       <Navbar />
       <SearchBar />

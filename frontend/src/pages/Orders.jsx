@@ -77,7 +77,7 @@ const Orders = () => {
   }
 
   return (
-    <div className='border-t pt-16'>
+    <div className='border-t pt-16 glass p-6 sm:p-10 relative z-10 my-10'>
 
         <div className='text-2xl'>
             <Title text1={'MY'} text2={'ORDERS'}/>

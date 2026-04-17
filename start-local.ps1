@@ -50,7 +50,7 @@ if ($backendPortInUse) {
     Start-Process powershell -ArgumentList @(
         "-NoExit",
         "-Command",
-        "cd '$backendDir'; npm run server"
+        "cd '$backendDir'; npm install; npm run server"
     )
 }
 
@@ -62,7 +62,7 @@ if ($frontendPortInUse) {
     Start-Process powershell -ArgumentList @(
         "-NoExit",
         "-Command",
-        "cd '$frontendDir'; npm run dev -- --host 127.0.0.1 --port 5174"
+        "cd '$frontendDir'; npm install; npm run dev -- --host 127.0.0.1 --port 5174"
     )
 }
 
@@ -74,7 +74,7 @@ if ($adminPortInUse) {
     Start-Process powershell -ArgumentList @(
         "-NoExit",
         "-Command",
-        "cd '$adminDir'; npm run dev -- --host 127.0.0.1 --port 5175"
+        "cd '$adminDir'; npm install; npm run dev -- --host 127.0.0.1 --port 5175"
     )
 }
 

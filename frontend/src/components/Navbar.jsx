@@ -195,7 +195,7 @@ const Navbar = () => {
   const sidebarPortal = typeof document !== 'undefined' ? createPortal(sidebarUi, document.body) : null
 
   return (
-    <div className='glass flex items-center justify-between py-4 px-4 sm:px-6 mt-4 relative z-10'>
+    <div className='glass flex items-center justify-between py-4 px-4 sm:px-6 mt-4 relative z-50'>
 
       <Link to='/' className='flex items-center gap-3'>
         <img src={assets.logo} className='w-32 sm:w-36 dark:invert' alt="" />
@@ -205,7 +205,7 @@ const Navbar = () => {
       <ul className='hidden lg:flex gap-2 text-sm text-gray-700 dark:text-gray-200 bg-white/70 dark:bg-black/70 border border-blue-100 dark:border-zinc-800 rounded-full px-3 py-2'>
         <NavLink to='/' className='flex flex-col items-center gap-1 px-3 py-1 rounded-full hover:bg-blue-50 dark:hover:bg-zinc-800'>
           <p>HOME</p>
-          <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+          <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 dark:bg-gray-300 hidden' />
         </NavLink>
 
         {!token ? (
@@ -218,36 +218,36 @@ const Navbar = () => {
                   const searchParams = new URLSearchParams(window.location.search);
                   const currentCat = searchParams.get('category');
                   const isCatActive = currentCat === cat.name;
-                  return `flex flex-col items-center gap-1 px-3 py-1 rounded-full hover:bg-blue-50 ${isCatActive ? 'active' : ''}`;
+                  return `flex flex-col items-center gap-1 px-3 py-1 rounded-full hover:bg-blue-50 dark:hover:bg-zinc-800 ${isCatActive ? 'active' : ''}`;
                 }}
               >
                 <p>{cat.name.toUpperCase()}</p>
-                <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+                <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 dark:bg-gray-300 hidden' />
               </NavLink>
             ))}
             <NavLink
               to='/wishlist'
               onClick={(e) => { if (!token) { e.preventDefault(); navigate('/login') } }}
-              className='flex flex-col items-center gap-1 px-3 py-1 rounded-full hover:bg-blue-50'
+              className='flex flex-col items-center gap-1 px-3 py-1 rounded-full hover:bg-blue-50 dark:hover:bg-zinc-800'
             >
               <p>WISHLIST</p>
-              <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+              <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 dark:bg-gray-300 hidden' />
             </NavLink>
           </>
         ) : (
           <>
-            <NavLink to='/collection' className='flex flex-col items-center gap-1 px-3 py-1 rounded-full hover:bg-blue-50'>
+            <NavLink to='/collection' className='flex flex-col items-center gap-1 px-3 py-1 rounded-full hover:bg-blue-50 dark:hover:bg-zinc-800'>
               <p>COLLECTION</p>
-              <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+              <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 dark:bg-gray-300 hidden' />
             </NavLink>
 
-            <NavLink to='/about' className='flex flex-col items-center gap-1 px-3 py-1 rounded-full hover:bg-blue-50'>
+            <NavLink to='/about' className='flex flex-col items-center gap-1 px-3 py-1 rounded-full hover:bg-blue-50 dark:hover:bg-zinc-800'>
               <p>ABOUT</p>
-              <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+              <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 dark:bg-gray-300 hidden' />
             </NavLink>
-            <NavLink to='/contact' className='flex flex-col items-center gap-1 px-3 py-1 rounded-full hover:bg-blue-50'>
+            <NavLink to='/contact' className='flex flex-col items-center gap-1 px-3 py-1 rounded-full hover:bg-blue-50 dark:hover:bg-zinc-800'>
               <p>CONTACT</p>
-              <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+              <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 dark:bg-gray-300 hidden' />
             </NavLink>
           </>
         )}
@@ -285,11 +285,11 @@ const Navbar = () => {
           {/* Dropdown Menu */}
           {token && isProfileOpen &&
             <div className='absolute dropdown-menu right-0 pt-4'>
-              <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-white dark:bg-black text-gray-600 dark:text-gray-300 rounded-xl border border-blue-100 dark:border-zinc-800 shadow-lg'>
+              <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-white dark:bg-[#111111] text-gray-600 dark:text-gray-300 rounded-xl border border-blue-100 dark:border-zinc-700 shadow-xl relative z-[100]'>
                 <p onClick={() => { setIsProfileOpen(false); navigate('/profile') }} className='cursor-pointer hover:text-black dark:hover:text-white'>My Profile</p>
                 <p onClick={() => { setIsProfileOpen(false); navigate('/wishlist') }} className='cursor-pointer hover:text-black dark:hover:text-white'>Wishlist</p>
                 <p onClick={() => { setIsProfileOpen(false); navigate('/orders') }} className='cursor-pointer hover:text-black dark:hover:text-white'>Orders</p>
-                <p onClick={() => { setIsProfileOpen(false); logout() }} className='cursor-pointer hover:text-black dark:hover:text-white'>Logout</p>
+                <p onClick={() => { setIsProfileOpen(false); logout() }} className='cursor-pointer text-red-500 hover:text-red-600'>Logout</p>
               </div>
             </div>}
         </div>

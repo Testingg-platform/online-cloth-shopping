@@ -17,7 +17,7 @@ const Wishlist = () => {
   }, [products, wishlistItems])
 
   return (
-    <div className='border-t-2 pt-10'>
+    <div className='border-t-2 pt-10 glass p-6 sm:p-10 relative z-10 my-10'>
       <div className='flex items-center justify-between flex-wrap gap-4'>
         <div>
           <h2 className='text-2xl font-semibold'>Wishlist</h2>

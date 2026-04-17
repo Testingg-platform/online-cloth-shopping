@@ -41,8 +41,10 @@ const Verify = () => {
     }, [token])
 
     return (
-        <div>
-
+        <div className='py-20 flex justify-center items-center'>
+            <div className='glass p-10 relative z-10 text-center'>
+                <p className='text-xl text-gray-700 dark:text-gray-300'>Verifying Payment...</p>
+            </div>
         </div>
     )
 }

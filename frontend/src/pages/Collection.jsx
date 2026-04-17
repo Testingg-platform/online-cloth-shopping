@@ -110,7 +110,7 @@ const Collection = () => {
         break;
 
       case 'high-low':
-        setFilterProducts(fpCopy.sort((b,a)=>(b.price - a.price)));
+        setFilterProducts(fpCopy.sort((a,b)=>(b.price - a.price)));
         break;
 
       default:
@@ -137,7 +137,7 @@ const Collection = () => {
   }, [searchParams])
 
   return (
-    <div className='flex flex-col sm:flex-row gap-4 sm:gap-10 pt-10 border-t'>
+    <div className='flex flex-col sm:flex-row gap-4 sm:gap-10 pt-10 border-t glass p-6 sm:p-10 relative z-10 my-10'>
       
       {/* Filter Options */}
       <div className='min-w-60'>

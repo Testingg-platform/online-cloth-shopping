@@ -38,24 +38,24 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className='py-14 text-center text-gray-600'>
+      <div className='py-14 text-center text-gray-600 glass relative z-10'>
         Loading profile...
       </div>
     )
   }
 
   return (
-    <div className='py-10'>
-      <div className='max-w-xl mx-auto card p-6 sm:p-8'>
+    <div className='py-10 relative z-10'>
+      <div className='max-w-xl mx-auto glass p-6 sm:p-8 relative z-20'>
         <div className='flex items-center gap-4'>
           <img src={assets.profile_icon} alt="" className='w-12 h-12 dark:invert' />
           <div>
-            <p className='text-lg font-semibold text-gray-800'>My Profile</p>
-            <p className='text-sm text-gray-500'>Account details</p>
+            <p className='text-lg font-semibold text-gray-800 dark:text-gray-100'>My Profile</p>
+            <p className='text-sm text-gray-500 dark:text-gray-400'>Account details</p>
           </div>
         </div>
 
-        <div className='mt-6 grid gap-4 text-gray-700'>
+        <div className='mt-6 grid gap-4 text-gray-700 dark:text-gray-300'>
           <div>
             <p className='text-xs uppercase text-gray-400'>Name</p>
             <p className='text-base'>{profile?.name || '-'}</p>

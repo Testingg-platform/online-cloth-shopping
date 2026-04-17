@@ -30,7 +30,7 @@ const Cart = () => {
   }, [cartItems, products])
 
   return (
-    <div className='border-t pt-14'>
+    <div className='border-t pt-14 glass p-6 sm:p-10 relative z-10 my-10'>
 
       <div className=' text-2xl mb-3'>
         <Title text1={'YOUR'} text2={'CART'} />
@@ -50,7 +50,7 @@ const Cart = () => {
                     <p className='text-xs sm:text-lg font-medium'>{productData.name}</p>
                     <div className='flex items-center gap-5 mt-2'>
                       <p>{currency}{productData.price}</p>
-                      <p className='px-2 sm:px-3 sm:py-1 border bg-blue-50 rounded-full text-xs'>{item.size}</p>
+                      <p className='px-2 sm:px-3 sm:py-1 border rounded-full text-xs'>{item.size}</p>
                     </div>
                   </div>
                 </div>

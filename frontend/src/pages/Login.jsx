@@ -51,7 +51,7 @@ const Login = () => {
   },[token])
 
   return (
-    <form onSubmit={onSubmitHandler} className='glass flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800 p-8'>
+    <form onSubmit={onSubmitHandler} className='glass relative z-10 flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800 p-8'>
         <div className='inline-flex items-center gap-2 mb-2'>
             <p className='prata-regular text-3xl'>{currentState}</p>
             <hr className='border-none h-[1.5px] w-8 bg-gray-800' />

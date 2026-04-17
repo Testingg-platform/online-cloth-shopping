@@ -12,6 +12,10 @@ import SubCategory from './pages/SubCategory'
 import Login from './components/Login'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
 export const currency = '₹'
@@ -24,6 +28,13 @@ const App = () => {
     localStorage.setItem('token', token)
   }, [token])
 
+  useEffect(() => {
+    if (token !== "") {
+      gsap.fromTo('.admin-sidebar', { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' });
+      gsap.fromTo('.admin-main-content', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: 'power3.out' });
+    }
+  }, [token]);
+
   return (
     <div className='admin-shell h-screen'>
       <ToastContainer />
@@ -32,7 +43,7 @@ const App = () => {
         : <>
           <div className='flex w-full min-h-screen overflow-hidden'>
             <Sidebar setToken={setToken} />
-            <main className='flex-1 overflow-y-auto p-6 h-screen'>
+            <main className='admin-main-content flex-1 overflow-y-auto overflow-x-hidden p-6 h-screen'>
               <div className='max-w-[1200px] mx-auto pt-4 text-gray-700 text-base'>
                 <Routes>
                   <Route path='/' element={<Navigate to="/dashboard" replace />} />

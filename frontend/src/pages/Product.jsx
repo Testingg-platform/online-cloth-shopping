@@ -34,7 +34,7 @@ const Product = () => {
   const isWishlisted = productData && wishlistItems.includes(productData._id)
 
   return productData ? (
-    <div className='transition-opacity ease-in duration-500 opacity-100'>
+    <div className='transition-opacity ease-in duration-500 opacity-100 glass p-6 sm:p-10 relative z-10 my-10'>
       
       {/*----------- Top Hero Section (100vh) -------------- */}
       <div className='flex flex-col lg:flex-row gap-8 lg:gap-12 pt-6 lg:min-h-[calc(100vh-100px)] items-stretch'>
