@@ -233,22 +233,6 @@ const Edit = ({ token }) => {
                   min="0"
                 />
               </div>
-
-              <div>
-                <p className='text-sm font-semibold text-gray-700 mb-2'>Ideal For</p>
-                <div className='flex flex-wrap gap-2'>
-                  {["Men", "Women", "Kids", "Unisex"].map(item => (
-                    <button 
-                      key={item}
-                      type='button' 
-                      onClick={() => setTargetAudience(item)} 
-                      className={`admin-chip ${targetAudience === item ? "admin-chip-active" : ""}`}
-                    >
-                      {item}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
           ) : (
             <div className='mt-6'>
