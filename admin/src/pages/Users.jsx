@@ -65,7 +65,7 @@ const Users = ({ token }) => {
               {users.map((user) => (
                 <tr key={user._id} className='bg-white'>
                   <td className='px-4 py-3'>
-                    <p className='font-semibold text-gray-900'>{user.name || 'Unnamed user'}</p>
+                    <p className='font-semibold text-gray-900'>{user.name || user.email.split('@')[0]}</p>
                     <p className='text-xs text-gray-500'>{user.email}</p>
                     <p className='text-[10px] text-gray-400'>#{user._id?.slice(-6)}</p>
                   </td>
