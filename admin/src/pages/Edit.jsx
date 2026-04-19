@@ -221,16 +221,15 @@ const Edit = ({ token }) => {
           ) : category === "Beauty" ? (
             <div className='mt-6 space-y-5'>
               <div>
-                <p className='text-sm font-semibold text-gray-700 mb-2'>Available Quantity (1-3)</p>
-                <select 
+                <p className='text-sm font-semibold text-gray-700 mb-2'>Total Stock Quantity</p>
+                <input 
                   onChange={(e) => setQty(Number(e.target.value))} 
                   value={qty} 
                   className='admin-input w-full max-w-[200px]'
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
+                  type="number"
+                  placeholder='10'
+                  min="0"
+                />
               </div>
 
               <div>
