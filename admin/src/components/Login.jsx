@@ -11,9 +11,16 @@ const Login = ({setToken}) => {
     const onSubmitHandler = async (e) => {
         try {
             e.preventDefault();
+            
+            if (!email || !password) {
+                toast.error("Please fill in all fields");
+                return;
+            }
+
             const response = await axios.post(backendUrl + '/api/user/admin',{email,password})
             if (response.data.success) {
                 setToken(response.data.token)
+                toast.success("Welcome, Admin");
             } else {
                 toast.error(response.data.message)
             }
@@ -32,11 +39,11 @@ const Login = ({setToken}) => {
             <form onSubmit={onSubmitHandler}>
                 <div className='mb-3 min-w-72'>
                     <p className='text-sm font-medium text-gray-700 mb-2'>Email Address</p>
-                    <input onChange={(e)=>setEmail(e.target.value)} value={email} className='admin-input w-full' type="email" placeholder='your@email.com' required />
+                    <input onChange={(e)=>setEmail(e.target.value)} value={email} className='admin-input w-full' type="email" placeholder='your@email.com' />
                 </div>
                 <div className='mb-3 min-w-72'>
                     <p className='text-sm font-medium text-gray-700 mb-2'>Password</p>
-                    <input onChange={(e)=>setPassword(e.target.value)} value={password} className='admin-input w-full' type="password" placeholder='Enter your password' required />
+                    <input onChange={(e)=>setPassword(e.target.value)} value={password} className='admin-input w-full' type="password" placeholder='Enter your password' />
                 </div>
                 <button className='admin-cta w-full mt-3' type="submit">Login</button>
             </form>

@@ -14,6 +14,20 @@ const Login = () => {
 
   const onSubmitHandler = async (event) => {
       event.preventDefault();
+      // Client-side validation
+      if (currentState === 'Sign Up' && (!name || name.trim() === "")) {
+          toast.error("Please enter your name");
+          return;
+      }
+      if (!email || email.trim() === "") {
+          toast.error("Please enter your email");
+          return;
+      }
+      if (!password || password.trim() === "") {
+          toast.error("Please enter your password");
+          return;
+      }
+
       try {
         if (currentState === 'Sign Up') {
           
@@ -21,6 +35,7 @@ const Login = () => {
           if (response.data.success) {
             setToken(response.data.token)
             localStorage.setItem('token',response.data.token)
+            toast.success("Account created successfully!");
           } else {
             toast.error(response.data.message)
           }
@@ -31,6 +46,7 @@ const Login = () => {
           if (response.data.success) {
             setToken(response.data.token)
             localStorage.setItem('token',response.data.token)
+            toast.success("Welcome back!");
           } else {
             toast.error(response.data.message)
           }
@@ -56,9 +72,9 @@ const Login = () => {
             <p className='prata-regular text-3xl'>{currentState}</p>
             <hr className='border-none h-[1.5px] w-8 bg-gray-800' />
         </div>
-        {currentState === 'Login' ? '' : <input onChange={(e)=>setName(e.target.value)} value={name} type="text" className='soft-input w-full' placeholder='Name' required/>}
-        <input onChange={(e)=>setEmail(e.target.value)} value={email} type="email" className='soft-input w-full' placeholder='Email' required/>
-        <input onChange={(e)=>setPasword(e.target.value)} value={password} type="password" className='soft-input w-full' placeholder='Password' required/>
+        {currentState === 'Login' ? '' : <input onChange={(e)=>setName(e.target.value)} value={name} type="text" className='soft-input w-full' placeholder='Name'/>}
+        <input onChange={(e)=>setEmail(e.target.value)} value={email} type="email" className='soft-input w-full' placeholder='Email' />
+        <input onChange={(e)=>setPasword(e.target.value)} value={password} type="password" className='soft-input w-full' placeholder='Password' />
         <div className='w-full flex justify-between text-sm mt-[-8px]'>
             <p onClick={()=>toast.info('Password reset is not set up. Please contact support.')} className=' cursor-pointer'>Forgot your password?</p>
             {
