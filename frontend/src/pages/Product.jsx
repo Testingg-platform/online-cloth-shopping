@@ -58,7 +58,7 @@ const Product = () => {
           </div>
           {/* Main Image */}
           <div className='flex-1 relative lg:h-[600px]'>
-              <img className='w-full h-full object-contain rounded-2xl shadow-sm bg-gray-50 dark:bg-zinc-900' src={image} alt={productData.name} />
+              <img className='w-full h-full object-fill rounded-2xl shadow-sm bg-gray-50 dark:bg-zinc-900' src={image} alt={productData.name} />
               
               <button
                 onClick={async () => {
