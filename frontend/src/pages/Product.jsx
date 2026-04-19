@@ -98,19 +98,34 @@ const Product = () => {
 
           <div className='flex flex-col gap-4 my-8'>
               <p className='text-gray-700 dark:text-gray-200 font-medium'>
-                {productData.category === 'Beauty' ? `Select ${productData.measurementType || 'Option'}` : 'Select Size'}
+                {productData.category === 'Beauty' ? 'Select Quantity' : 'Select Size'}
               </p>
-              <div className='flex gap-2 flex-wrap'>
-                {(productData.category === 'Beauty' ? (productData.values || []) : (productData.sizes || [])).map((item, index) => (
-                    <button 
-                      onClick={() => setSize(item)} 
-                      className={`px-4 py-2 border rounded-md transition-all ${item === size ? 'border-sky-500 text-sky-600 bg-sky-50 dark:bg-sky-900/20' : 'bg-gray-100 dark:bg-zinc-800 text-gray-500 dark:text-gray-400 border-transparent dark:border-zinc-700'}`} 
-                      key={index}
-                    >
-                      {item}{productData.category === 'Beauty' && productData.measurementType !== 'qty' ? productData.measurementType : ''}
-                    </button>
-                ))}
-              </div>
+              {productData.category === 'Beauty' ? (
+                <div className='flex gap-2 flex-wrap'>
+                  <select 
+                    onChange={(e) => setSize(e.target.value)} 
+                    value={size}
+                    className='px-4 py-2 border rounded-md bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-gray-200 outline-none focus:border-sky-500 transition-all'
+                  >
+                    <option value="">Select Quantity</option>
+                    {[...Array(Math.min(productData.qty || 0, 3))].map((_, i) => (
+                      <option key={i + 1} value={i + 1}>{i + 1}</option>
+                    ))}
+                  </select>
+                </div>
+              ) : (
+                <div className='flex gap-2 flex-wrap'>
+                  {(productData.sizes || []).map((item, index) => (
+                      <button 
+                        onClick={() => setSize(item)} 
+                        className={`px-4 py-2 border rounded-md transition-all ${item === size ? 'border-sky-500 text-sky-600 bg-sky-50 dark:bg-sky-900/20' : 'bg-gray-100 dark:bg-zinc-800 text-gray-500 dark:text-gray-400 border-transparent dark:border-zinc-700'}`} 
+                        key={index}
+                      >
+                        {item}
+                      </button>
+                  ))}
+                </div>
+              )}
           </div>
 
           <div className='space-y-4'>
@@ -121,7 +136,11 @@ const Product = () => {
                   return
                 }
                 if (size) {
-                  addToCart(productData._id,size)
+                  if (productData.category === 'Beauty') {
+                    addToCart(productData._id, 'Standard', Number(size))
+                  } else {
+                    addToCart(productData._id, size)
+                  }
                   setAddedPulse(true)
                   setTimeout(()=>setAddedPulse(false), 300)
                 }
@@ -134,7 +153,7 @@ const Product = () => {
             
             {token && !size && (
               <p className='text-xs text-sky-600 font-medium'>
-                 Please select {productData.category === 'Beauty' ? (productData.measurementType || 'measurement') : 'a size'} to continue.
+                 Please select {productData.category === 'Beauty' ? 'a quantity' : 'a size'} to continue.
               </p>
             )}
           </div>

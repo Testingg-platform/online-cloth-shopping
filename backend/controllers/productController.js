@@ -6,7 +6,7 @@ import { mapProductImages } from "../utils/localImages.js"
 const addProduct = async (req, res) => {
     try {
 
-        const { name, description, price, category, subCategory, sizes, bestseller, targetAudience, measurementType, values } = req.body
+        const { name, description, price, category, subCategory, sizes, bestseller, targetAudience, measurementType, values, qty } = req.body
 
         const image1 = req.files.image1 && req.files.image1[0]
         const image2 = req.files.image2 && req.files.image2[0]
@@ -33,6 +33,7 @@ const addProduct = async (req, res) => {
             targetAudience: targetAudience || "",
             measurementType: measurementType || "",
             values: values ? JSON.parse(values) : [],
+            qty: qty ? Number(qty) : 0,
             image: imagesUrl,
             date: Date.now()
         }
@@ -97,7 +98,7 @@ const singleProduct = async (req, res) => {
 // function for updating product
 const updateProduct = async (req, res) => {
     try {
-        const { productId, name, description, price, category, subCategory, sizes, bestseller, imageUrls, targetAudience, measurementType, values } = req.body
+        const { productId, name, description, price, category, subCategory, sizes, bestseller, imageUrls, targetAudience, measurementType, values, qty } = req.body
 
         const product = await productModel.findById(productId)
         if (!product) {
@@ -163,6 +164,7 @@ const updateProduct = async (req, res) => {
             targetAudience: targetAudience || "",
             measurementType: measurementType || "",
             values: values ? (typeof values === 'string' ? JSON.parse(values) : values) : [],
+            qty: qty ? Number(qty) : 0,
             image: nextImages,
         }
 

@@ -11,6 +11,7 @@ const productSchema = new mongoose.Schema({
     targetAudience: { type: String }, // Beauty-specific (e.g., Men, Women, Kids)
     measurementType: { type: String }, // Beauty-specific (e.g., ml, L, qty)
     values: { type: Array }, // Beauty-specific values (e.g., [100, 200])
+    qty: { type: Number }, // Beauty-specific (e.g., 1, 2, 3)
     bestseller: { type: Boolean },
     date: { type: Number, required: true }
 })

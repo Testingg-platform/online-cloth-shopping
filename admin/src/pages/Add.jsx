@@ -28,6 +28,7 @@ const Add = ({token}) => {
     const [targetAudience, setTargetAudience] = useState("Women");
     const [measurementType, setMeasurementType] = useState("ml");
     const [values, setValues] = useState([]);
+    const [qty, setQty] = useState(1);
 
     const fetchCategories = async () => {
       try {
@@ -79,6 +80,7 @@ const Add = ({token}) => {
         formData.append("targetAudience", targetAudience)
         formData.append("measurementType", measurementType)
         formData.append("values", JSON.stringify(values))
+        formData.append("qty", qty)
         formData.append("sizes", JSON.stringify([])) // Send empty array for compatibility
       } else {
         formData.append("sizes", JSON.stringify(sizes))
@@ -178,6 +180,19 @@ const Add = ({token}) => {
           ) : category === "Beauty" ? (
             <div className='mt-6 space-y-5'>
               <div>
+                <p className='text-sm font-semibold text-gray-700 mb-2'>Available Quantity (1-3)</p>
+                <select 
+                  onChange={(e) => setQty(Number(e.target.value))} 
+                  value={qty} 
+                  className='admin-input w-full max-w-[200px]'
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+
+              <div>
                 <p className='text-sm font-semibold text-gray-700 mb-2'>Ideal For</p>
                 <div className='flex flex-wrap gap-2'>
                   {["Men", "Women", "Kids", "Unisex"].map(item => (
@@ -190,39 +205,6 @@ const Add = ({token}) => {
                       {item}
                     </button>
                   ))}
-                </div>
-              </div>
-
-              <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-                <div>
-                  <p className='text-sm font-semibold text-gray-700 mb-2'>Measurement Type</p>
-                  <select 
-                    onChange={(e) => {
-                      setMeasurementType(e.target.value);
-                      setValues([]); // Reset values when type changes
-                    }} 
-                    value={measurementType} 
-                    className='admin-input w-full'
-                  >
-                    <option value="ml">ml (Milliliters)</option>
-                    <option value="L">l (Liters)</option>
-                    <option value="qty">qty (Quantity)</option>
-                  </select>
-                </div>
-                <div>
-                  <p className='text-sm font-semibold text-gray-700 mb-2'>Select {measurementType} Values</p>
-                  <div className='flex flex-wrap gap-2'>
-                    {(measurementType === 'ml' ? [50, 100, 200, 500] : [1, 2, 3, 5, 10]).map(val => (
-                      <button 
-                        key={val}
-                        type='button' 
-                        onClick={() => setValues(prev => prev.includes(val) ? prev.filter(item => item !== val) : [...prev, val])} 
-                        className={`admin-chip ${values.includes(val) ? "admin-chip-active" : ""}`}
-                      >
-                        {val} {measurementType !== 'qty' ? measurementType : ''}
-                      </button>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>
