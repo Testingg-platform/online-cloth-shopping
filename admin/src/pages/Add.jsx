@@ -74,9 +74,11 @@ const Add = ({token}) => {
       formData.append("subCategory",subCategory)
       formData.append("bestseller",bestseller)
       
-      if (category === "Clothing") {
+      const isBeauty = category.toLowerCase() === "beauty" || subCategory.toLowerCase() === "beauty";
+      
+      if (category.toLowerCase() === "clothing") {
         formData.append("sizes", JSON.stringify(sizes))
-      } else if (category === "Beauty") {
+      } else if (isBeauty) {
         formData.append("targetAudience", targetAudience)
         formData.append("measurementType", measurementType)
         formData.append("values", JSON.stringify(values))
@@ -161,7 +163,7 @@ const Add = ({token}) => {
             </div>
           </div>
 
-          {category === "Clothing" ? (
+          {category.toLowerCase() === "clothing" ? (
             <div className='mt-6'>
               <p className='text-sm font-semibold text-gray-700 mb-2'>Product Sizes</p>
               <div className='flex flex-wrap gap-2'>
@@ -177,7 +179,7 @@ const Add = ({token}) => {
                 ))}
               </div>
             </div>
-          ) : category === "Beauty" ? (
+          ) : (category.toLowerCase() === "beauty" || subCategory.toLowerCase() === "beauty") ? (
             <div className='mt-6 space-y-5'>
               <div>
                 <p className='text-sm font-semibold text-gray-700 mb-2'>Total Stock Quantity</p>

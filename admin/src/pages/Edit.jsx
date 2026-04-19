@@ -107,9 +107,11 @@ const Edit = ({ token }) => {
       formData.append("subCategory", subCategory)
       formData.append("bestseller", bestseller)
       
-      if (category === "Clothing") {
+      const isBeauty = category.toLowerCase() === "beauty" || subCategory.toLowerCase() === "beauty";
+
+      if (category.toLowerCase() === "clothing") {
         formData.append("sizes", JSON.stringify(sizes))
-      } else if (category === "Beauty") {
+      } else if (isBeauty) {
         formData.append("targetAudience", targetAudience)
         formData.append("measurementType", measurementType)
         formData.append("values", JSON.stringify(values))
@@ -202,15 +204,15 @@ const Edit = ({ token }) => {
             </div>
           </div>
 
-          {category === "Clothing" ? (
+          {category.toLowerCase() === "clothing" ? (
             <div className='mt-6'>
               <p className='text-sm font-semibold text-gray-700 mb-2'>Product Sizes</p>
               <div className='flex flex-wrap gap-2'>
-                {sizeOptions.map((size) => (
-                  <button
+                {["S", "M", "L", "XL", "XXL"].map(size => (
+                  <button 
                     key={size}
-                    type='button'
-                    onClick={() => setSizes(prev => prev.includes(size) ? prev.filter(item => item !== size) : [...prev, size])}
+                    type='button' 
+                    onClick={() => setSizes(prev => prev.includes(size) ? prev.filter(item => item !== size) : [...prev, size])} 
                     className={`admin-chip ${sizes.includes(size) ? "admin-chip-active" : ""}`}
                   >
                     {size}
@@ -218,7 +220,7 @@ const Edit = ({ token }) => {
                 ))}
               </div>
             </div>
-          ) : category === "Beauty" ? (
+          ) : (category.toLowerCase() === "beauty" || subCategory.toLowerCase() === "beauty") ? (
             <div className='mt-6 space-y-5'>
               <div>
                 <p className='text-sm font-semibold text-gray-700 mb-2'>Total Stock Quantity</p>

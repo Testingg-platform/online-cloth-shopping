@@ -32,6 +32,7 @@ const Product = () => {
   }, [productId,products])
 
   const isWishlisted = productData && wishlistItems.includes(productData._id)
+  const isBeauty = productData && (productData.category.toLowerCase() === 'beauty' || productData.subCategory.toLowerCase() === 'beauty');
 
   return productData ? (
     <div className='transition-opacity ease-in duration-500 opacity-100 glass p-6 sm:p-10 relative z-10 my-10'>
@@ -98,9 +99,9 @@ const Product = () => {
 
           <div className='flex flex-col gap-4 my-8'>
               <p className='text-gray-700 dark:text-gray-200 font-medium'>
-                {productData.category === 'Beauty' ? 'Select Quantity' : 'Select Size'}
+                {isBeauty ? 'Select Quantity' : 'Select Size'}
               </p>
-              {productData.category === 'Beauty' ? (
+              {isBeauty ? (
                 <div className='flex gap-2 flex-wrap'>
                   <select 
                     onChange={(e) => setSize(e.target.value)} 
@@ -136,7 +137,7 @@ const Product = () => {
                   return
                 }
                 if (size) {
-                  if (productData.category === 'Beauty') {
+                  if (isBeauty) {
                     addToCart(productData._id, 'Standard', Number(size))
                   } else {
                     addToCart(productData._id, size)
@@ -153,7 +154,7 @@ const Product = () => {
             
             {token && !size && (
               <p className='text-xs text-sky-600 font-medium'>
-                 Please select {productData.category === 'Beauty' ? 'a quantity' : 'a size'} to continue.
+                 Please select {isBeauty ? 'a quantity' : 'a size'} to continue.
               </p>
             )}
           </div>
