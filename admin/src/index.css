@@ -169,7 +169,7 @@ select,input,textarea{
     border: 1px solid var(--border-soft);
     border-radius: 999px;
     padding: 6px 14px;
-    background: #000000;
+    background: #fff;
     transition: all 150ms ease;
 }
 
