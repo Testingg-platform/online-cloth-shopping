@@ -178,6 +178,7 @@ const Add = ({token}) => {
                   </button>
                 ))}
               </div>
+            </div>
           ) : (category.toLowerCase() === "beauty" || subCategory.toLowerCase() === "beauty") ? (
             <div className='mt-6 space-y-5'>
               <div>
